@@ -30,7 +30,7 @@ public:
     * @post If the heap was not full, newItem is in its proper
     *       position.
     * @throw HeapException If the heap is full. */
-   virtual void heapInsert(const HeapItemType& newItem)
+   virtual void heapInsert( HeapItemType*& newItem)
       throw(HeapException);
 
    /** Retrieves and deletes the item in the root of a heap. This
@@ -39,7 +39,7 @@ public:
     * @post If the heap was not empty, rootItem is the retrieved
     *       item, the item is deleted from the heap.
     * @throw HeapException If the heap is empty. */
-   virtual void heapDelete(HeapItemType& rootItem)
+   virtual void heapDelete(HeapItemType*& rootItem)
       throw(HeapException);
 
 protected:
@@ -47,7 +47,7 @@ protected:
    void heapRebuild(int root);
 
 private:
-   HeapItemType items[MAX_HEAP];  /** Array of heap items. */
+   HeapItemType* items[MAX_HEAP];  /** Array of heap items. */
    int          size;             /** Number of heap items. */
 }; // end Heap
 // End of header file.

@@ -1,71 +1,66 @@
 #include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include <string>
 using namespace std;
 
-int main(int argCount, char *args[]) {
+#include "Task.h"
+
+int main(int argc, char *argv[]) {
 // args[0] is filename, args[1] is avgwaitingtime
 
-    if(argCount != 2){
-        cout << "Wrong arguments!" << endl;
-        return 0;
+    if(argc != 2){
+        //cout << "Wrong arguments!" << endl;
+        //return 0;
     }
 
-    string text("");
     string line;
-    //ifstream myFile("sample.txt");
-    ifstream myFile( args[0].c_str());
+    ifstream myFile("input.txt");
+    //ifstream myFile( argv[0] );
 
-    if (myFile.is_open())
+    if ( !myFile.is_open() )
     {
-      while ( getline(myFile, line) )
-      {
-        int pos = 0;
-        int blankPos = line.find_first_of(" ");
-        line.substr(pos, line.length() - blankPos);
-        /*
-        int counter = 0;
-        while( !movieFile.eof() && counter < this->numMovies)
-        {
-            getline(movieFile, line);
-
-            int pos = line.find_first_of(" ");
-            //cout << pos << endl;
-
-            int movieId, movieAmount;
-            movieId = atoi( line.substr(0, pos).c_str() );
-            movieAmount = atoi( line.substr(pos+1).c_str() );
-            //cout << "/DEBUG/ movie " << movieId  << ", " << movieAmount <<  endl;
-
-            movies[counter] = new Movie(movieId, movieAmount);
-            counter++;
-        }
-        */
-      }
-      myFile.close();
+        cout << "Unable to open file" << endl;
+        return 0;
     }
     else
     {
-        cout << "Unable to open file" << endl;
-        return;
-    }
+        getline(myFile, line);
+        int size = atoi( line.c_str() ); //get size from first line
 
-    for(int i = 0; i < text.length(); i++)
-    {
-        string tmp = "";
-        for(int j = 0; j < n; j++)
+        while ( size > 0 && getline(myFile, line) )
         {
-            if(i+j < text.length())  //if the string size is not exceeded
-                tmp += text.at(i+j);
+            string temp("");
+            Task *tmpTask = new Task();
 
-        }
+            // first one is ID
+            int blankPos = line.find_first_of(" ");
+            temp = line.substr(0, blankPos);
+            line = line.substr(blankPos + 1);
+            tmpTask->setId( atoi( temp.c_str() ) );
 
-        //cout << tmp << endl;
-        std::size_t found;
-        if( (tmp.length() != n) ||
-            ( (found = tmp.find(' ') ) != string::npos) ||
-            ( (found = tmp.find('\n') ) != string::npos) ) //npos is -1, if it contains empty space OR length is not equal to n, just ignore it
-            continue;
+            //second one is PRIORITY
+            blankPos = line.find_first_of(" ");
+            temp = line.substr(0, blankPos);
+            line = line.substr(blankPos + 1);
+            tmpTask->setPriority( atoi( temp.c_str() ) );
 
-        this->addNgram(tmp);
+            //third one is REQUEST TIME
+            blankPos = line.find_first_of(" ");
+            temp = line.substr(0, blankPos);
+            line = line.substr(blankPos + 1);
+            tmpTask->setRequestTime( atoi( temp.c_str() ) );
+
+            //fourth one is PROCESS TIME
+            blankPos = line.find_first_of("\n");
+            temp = line.substr(0, blankPos);
+            tmpTask->setProcessTime( atoi( temp.c_str() ) );
+
+            tmpTask->show();
+            size--;
+        } //end of while loop
+
+        myFile.close();
     }
 
 

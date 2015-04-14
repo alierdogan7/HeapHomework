@@ -15,7 +15,7 @@ bool Heap::heapIsEmpty() const
    return bool(size == 0);
 }  // end heapIsEmpty
 
-void Heap::heapInsert(const HeapItemType& newItem)
+void Heap::heapInsert( HeapItemType*& newItem)
    throw(HeapException)
 // Method: Inserts the new item after the last item in the
 // heap and trickles it up to its proper position. The
@@ -30,9 +30,9 @@ void Heap::heapInsert(const HeapItemType& newItem)
    int place = size;
    int parent = (place - 1)/2;
    while ( (parent >= 0) &&
-           (items[place].getPriority() > items[parent].getPriority()) )
+           (items[place]->getPriority() > items[parent]->getPriority()) )
    {  // swap items[place] and items[parent]
-      HeapItemType temp = items[parent];
+      HeapItemType* temp = items[parent];
       items[parent] = items[place];
       items[place] = temp;
 
@@ -43,7 +43,7 @@ void Heap::heapInsert(const HeapItemType& newItem)
    ++size;
 }  // end heapInsert
 
-void Heap::heapDelete(HeapItemType& rootItem)
+void Heap::heapDelete(HeapItemType*& rootItem)
    throw(HeapException)
 // Method: Swaps the last item in the heap with the root
 // and trickles it down to its proper position.
@@ -71,13 +71,13 @@ void Heap::heapRebuild(int root)
 
       // if root has a right child, find larger child
       if ( (rightChild < size) &&
-           (items[rightChild].getPriority() > items[child].getPriority()) )
+           (items[rightChild]->getPriority() > items[child]->getPriority()) )
          child = rightChild;  // index of larger child
 
       // if the root's value is smaller than the
       // value in the larger child, swap values
-      if ( items[root].getPriority() < items[child].getPriority() )
-      {  HeapItemType temp = items[root];
+      if ( items[root]->getPriority() < items[child]->getPriority() )
+      {  HeapItemType* temp = items[root];
          items[root] = items[child];
          items[child] = temp;
 

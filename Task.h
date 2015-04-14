@@ -1,5 +1,7 @@
-#include <string>
+#ifndef TASK_H_
+#define TASK_H_
 
+#include <string>
 using namespace std;
 
 //typedef int KeyType;
@@ -14,10 +16,17 @@ public:
    int getId();
    int getRequestTime();
    int getProcessTime();
+   void setProcessTime( int processTime );
+   void setId( int id );
+   void setRequestTime( int requestTime );
+   void setPriority( int priority);
+   void show();
 
 private:
    int id;
    int priority;
    int requestTime;
    int processTime;
-}; // end KeyedItem
+};
+
+#endif
