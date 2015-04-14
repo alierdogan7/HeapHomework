@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1156737756 source:/home/burak/Documents/CS202/hw3_CS202/hw3/Heap.cpp
+	"Heap.h"
+
+1429012621 /home/burak/Documents/CS202/hw3_CS202/hw3/Heap.h
+	"HeapException.h"
+	"Task.h"
+
+1156737756 /home/burak/Documents/CS202/hw3_CS202/hw3/HeapException.h
+	<stdexcept>
+	<string>
+
+1156737756 /home/burak/Documents/CS202/hw3_CS202/hw3/KeyedItem.h
+	<string>
+
+1156737756 source:/home/burak/Documents/CS202/hw3_CS202/hw3/PQ.cpp
+	"PQ.h"
+
+1156737756 /home/burak/Documents/CS202/hw3_CS202/hw3/PQ.h
+	"PQueueException.h"
+	"Heap.h"
+
+1156737756 /home/burak/Documents/CS202/hw3_CS202/hw3/PQueueException.h
+	<stdexcept>
+	<string>
+
+1429012723 /home/burak/Documents/CS202/hw3_CS202/hw3/Task.h
+	<string>
+
+1429011833 source:/home/burak/Documents/CS202/hw3_CS202/hw3/main.cpp
+	<iostream>
+
