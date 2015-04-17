@@ -6,29 +6,49 @@ using namespace std;
 
 #include "Task.h"
 
-int main(int argc, char *argv[]) {
-// args[0] is filename, args[1] is avgwaitingtime
+bool loadTasks( char *fileName, Task **&tasks, int& tasksNumber );
 
-    if(argc != 2){
-        //cout << "Wrong arguments!" << endl;
-        //return 0;
+int main(int argc, char *argv[]) {
+
+    // args[0] is ./simulator thing, args[1] is filename, args[2] is avgwaitingtime
+
+     if(argc != 3){
+        cout << "Wrong arguments!" << endl;
+        return -1;
     }
 
-    string line;
-    ifstream myFile("input.txt");
-    //ifstream myFile( argv[0] );
+    Task **tasks;
+    int tasksNumber = 0;
+
+    if( !loadTasks(argv[1], tasks, tasksNumber) )
+        return -1;
+
+    for( int i = 0; i < tasksNumber; i++) tasks[i]->show();
+
+    return 0;
+}
+
+bool loadTasks( char *fileName, Task **&tasks, int& tasksNumber )
+{
+
+    ifstream myFile(fileName);
+    string line("");
 
     if ( !myFile.is_open() )
     {
         cout << "Unable to open file" << endl;
-        return 0;
+        return false;
     }
     else
     {
         getline(myFile, line);
         int size = atoi( line.c_str() ); //get size from first line
+        int count = 0;
 
-        while ( size > 0 && getline(myFile, line) )
+        tasks = new Task*[size];
+        tasksNumber = size;
+
+        while ( count < size && getline(myFile, line) )
         {
             string temp("");
             Task *tmpTask = new Task();
@@ -56,13 +76,13 @@ int main(int argc, char *argv[]) {
             temp = line.substr(0, blankPos);
             tmpTask->setProcessTime( atoi( temp.c_str() ) );
 
-            tmpTask->show();
-            size--;
+            //tmpTask->show();
+            tasks[count] = tmpTask;
+            count++;
+
         } //end of while loop
 
         myFile.close();
+        return true;
     }
-
-
-    return 0;
 }

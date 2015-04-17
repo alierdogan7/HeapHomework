@@ -70,13 +70,15 @@ void Heap::heapRebuild(int root)
                                    // if any
 
       // if root has a right child, find larger child
-      if ( (rightChild < size) &&
-           (items[rightChild]->getPriority() > items[child]->getPriority()) )
+      if ( (rightChild < size &&
+           items[rightChild]->getPriority() > items[child]->getPriority()) ||  (items[rightChild]->getPriority() == items[child]->getPriority()
+            && items[rightChild]->getRequestTime() < items[child]->getRequestTime()) )
          child = rightChild;  // index of larger child
 
       // if the root's value is smaller than the
       // value in the larger child, swap values
-      if ( items[root]->getPriority() < items[child]->getPriority() )
+      if ( items[root]->getPriority() < items[child]->getPriority() || (items[root]->getPriority() == items[child]->getPriority()
+            && items[root]->getRequestTime() > items[child]->getRequestTime()) )
       {  HeapItemType* temp = items[root];
          items[root] = items[child];
          items[child] = temp;

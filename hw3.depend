@@ -38,3 +38,30 @@
 	<iostream>
 	"Task.h"
 
+1429257305 source:/home/omer/Documents/HeapBurak/Heap.cpp
+	"Heap.h"
+
+1429257305 /home/omer/Documents/HeapBurak/Heap.h
+	"HeapException.h"
+	"Task.h"
+
+1429257305 /home/omer/Documents/HeapBurak/HeapException.h
+	<stdexcept>
+	<string>
+
+1429257305 /home/omer/Documents/HeapBurak/Task.h
+	<string>
+
+1429257305 source:/home/omer/Documents/HeapBurak/Task.cpp
+	<iostream>
+	"Task.h"
+
+1429260001 source:/home/omer/Documents/HeapBurak/main.cpp
+	<iostream>
+	<stdlib.h>
+	<fstream>
+	<string>
+	"Task.h"
+
+1429261223 source:/home/omer/Documents/HeapBurak/Server.cpp
+
