@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="input.txt 50" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -34,11 +35,11 @@
 		<Unit filename="Heap.cpp" />
 		<Unit filename="Heap.h" />
 		<Unit filename="HeapException.h" />
-		<Unit filename="PQ.cpp" />
-		<Unit filename="PQ.h" />
-		<Unit filename="PQueueException.h" />
+		<Unit filename="Server.cpp" />
+		<Unit filename="Server.h" />
 		<Unit filename="Task.cpp" />
 		<Unit filename="Task.h" />
+		<Unit filename="input.txt" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
