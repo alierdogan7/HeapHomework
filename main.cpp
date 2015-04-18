@@ -5,6 +5,8 @@
 using namespace std;
 
 #include "Task.h"
+#include "Servers.h"
+#include "Heap.h"
 
 bool loadTasks( char *fileName, Task **&tasks, int& tasksNumber );
 
@@ -19,11 +21,41 @@ int main(int argc, char *argv[]) {
 
     Task **tasks;
     int tasksNumber = 0;
+    Heap heap;
 
     if( !loadTasks(argv[1], tasks, tasksNumber) )
         return -1;
 
-    for( int i = 0; i < tasksNumber; i++) tasks[i]->show();
+    //for( int i = 0; i < tasksNumber; i++) tasks[i]->show();
+    bool isFound = false;
+    for(int serverNumber = 1; !isFound; serverNumber++)
+    {
+        Servers servers(serverNumber); //configure a new server room
+
+        int taskCount = 0;
+        for(int time = 0; taskCount < tasksNumber; time++) //simulate the time
+        {
+            if( tasks[taskCount]->getRequestTime() == time ) //if a request comes, insert it to priority queue
+            {
+                heap.heapInsert(tasks[taskCount]);
+                taskCount++;
+            }
+
+            if( !servers.allServersBusy() ) //if there is any suitable server, process a request
+            {
+                Task *tmp = NULL;
+                heap.heapDelete( tmp); //retrieve the most prior item from queue
+
+                if ( tmp != NULL )
+                {
+                    servers.process(tmp, time); //process the request with a suitable computer
+                }
+            }
+
+            servers.update(); //update all servers' times and states
+
+        }
+    }
 
     return 0;
 }

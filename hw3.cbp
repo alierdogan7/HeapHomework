@@ -35,8 +35,8 @@
 		<Unit filename="Heap.cpp" />
 		<Unit filename="Heap.h" />
 		<Unit filename="HeapException.h" />
-		<Unit filename="Server.cpp" />
-		<Unit filename="Server.h" />
+		<Unit filename="Servers.cpp" />
+		<Unit filename="Servers.h" />
 		<Unit filename="Task.cpp" />
 		<Unit filename="Task.h" />
 		<Unit filename="input.txt" />
