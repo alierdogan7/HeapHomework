@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1429377668 source:/home/burak/Documents/CS202/hw3_CS202/hw3/Heap.cpp
+1429398598 source:/home/burak/Documents/CS202/hw3_CS202/hw3/Heap.cpp
+	<iostream>
 	"Heap.h"
 
-1429377668 /home/burak/Documents/CS202/hw3_CS202/hw3/Heap.h
+1429398503 /home/burak/Documents/CS202/hw3_CS202/hw3/Heap.h
 	"HeapException.h"
 	"Task.h"
 
@@ -27,7 +28,7 @@
 1429377668 /home/burak/Documents/CS202/hw3_CS202/hw3/Task.h
 	<string>
 
-1429390567 source:/home/burak/Documents/CS202/hw3_CS202/hw3/main.cpp
+1429399031 source:/home/burak/Documents/CS202/hw3_CS202/hw3/main.cpp
 	<iostream>
 	<stdlib.h>
 	<fstream>
@@ -67,11 +68,11 @@
 
 1429261223 source:/home/omer/Documents/HeapBurak/Server.cpp
 
-1429390546 /home/burak/Documents/CS202/hw3_CS202/hw3/Servers.h
+1429394930 /home/burak/Documents/CS202/hw3_CS202/hw3/Servers.h
 	<string>
 	"Task.h"
 
-1429390583 source:/home/burak/Documents/CS202/hw3_CS202/hw3/Servers.cpp
+1429396587 source:/home/burak/Documents/CS202/hw3_CS202/hw3/Servers.cpp
 	<string>
 	<sstream>
 	"Task.h"

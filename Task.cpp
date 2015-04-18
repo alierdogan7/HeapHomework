@@ -1,3 +1,10 @@
+/*
+Ali Burak ERDOĞAN
+21301492
+CS202 - Section 3
+Homework#3
+*/
+
 #include <iostream>
 using namespace std;
 

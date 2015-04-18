@@ -1,3 +1,9 @@
+/*
+Ali Burak ERDOĞAN
+21301492
+CS202 - Section 3
+Homework#3
+*/
 /** @file Heap.h */
 
 const int MAX_HEAP = 50;
@@ -41,6 +47,8 @@ public:
     * @throw HeapException If the heap is empty. */
    virtual void heapDelete(HeapItemType*& rootItem)
       throw(HeapException);
+
+    virtual void printHeap();
 
 protected:
    /** Converts the semiheap rooted at index root into a heap. */

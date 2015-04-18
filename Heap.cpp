@@ -1,4 +1,12 @@
+/*
+Ali Burak ERDOĞAN
+21301492
+CS202 - Section 3
+Homework#3
+*/
 /** @file Heap.cpp */
+#include <iostream>
+using namespace std;
 
 #include "Heap.h"  // header file for class Heap
 
@@ -90,4 +98,11 @@ void Heap::heapRebuild(int root)
 
    // if root is a leaf, do nothing
 }  // end heapRebuild
+
+void Heap::printHeap()
+{
+    cout << "Current heap is: ";
+    for(int i = 0; i < size; i++)
+        cout << items[i]->getId() << " ";
+}
 // End of implementation file.

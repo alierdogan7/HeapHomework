@@ -1,3 +1,10 @@
+/*
+Ali Burak ERDOĞAN
+21301492
+CS202 - Section 3
+Homework#3
+*/
+
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
@@ -23,25 +30,30 @@ int main(int argc, char *argv[]) {
     int tasksNumber = 0;
     Heap heap;
 
+    //loading all the tasks from input file to an array
     if( !loadTasks(argv[1], tasks, tasksNumber) )
         return -1;
+//    else
+//       for( int i = 0; i < tasksNumber; i++) tasks[i]->show();
 
-    //for( int i = 0; i < tasksNumber; i++) tasks[i]->show();
-    bool isFound = false;
-    for(int serverNumber = 1; !isFound; serverNumber++)
+    //starting to simulate, server number starts from 1
+    int serverNumber = 1;
+    while(true)
     {
         Servers servers(serverNumber); //configure a new server room
 
         int taskCount = 0;
-        for(int time = 0; taskCount < tasksNumber; time++) //simulate the time
+        for(int time = 0; taskCount < tasksNumber || !servers.allServersEmpty() || !heap.heapIsEmpty(); time++) //simulate the time
         {
-            if( tasks[taskCount]->getRequestTime() == time ) //if a request comes, insert it to priority queue
+            //insert all the requests which are coming at the same time
+            while(taskCount < tasksNumber && tasks[taskCount]->getRequestTime() == time)
             {
                 heap.heapInsert(tasks[taskCount]);
                 taskCount++;
             }
 
-            if( !servers.allServersBusy() ) //if there is any suitable server, process a request
+            //unless all servers are busy, try to load each server with a request which is pulled from priority queue
+            while( !servers.allServersBusy() && !heap.heapIsEmpty()) //if there is any suitable server, process a request
             {
                 Task *tmp = NULL;
                 heap.heapDelete( tmp); //retrieve the most prior item from queue
@@ -54,12 +66,30 @@ int main(int argc, char *argv[]) {
 
             servers.update(); //update all servers' times and states
 
+            //cout << "With serverNumber " << serverNumber << " at ms " << time << endl;
+            //cout << servers.getLog() << endl;
+        }
+
+        //if avg. waiting is less than the limit, print the log and exit the loop
+        double avgWaiting = servers.getTotalWaiting() / (double) tasksNumber;
+        if(avgWaiting <= atoi(argv[2]) )
+        {
+            //heap.printHeap();
+            cout << servers.getLog() << endl;
+            cout << "Average waiting time: " << avgWaiting << " ms." << endl;
+            break;
+        }
+        else
+        {
+            serverNumber++;
         }
     }
+
 
     return 0;
 }
 
+//loading all the tasks from input file to an array
 bool loadTasks( char *fileName, Task **&tasks, int& tasksNumber )
 {
 
@@ -77,9 +107,11 @@ bool loadTasks( char *fileName, Task **&tasks, int& tasksNumber )
         int size = atoi( line.c_str() ); //get size from first line
         int count = 0;
 
+        //generate new Task array
         tasks = new Task*[size];
         tasksNumber = size;
 
+        //this loop simply parses each line and generates a Task object
         while ( count < size && getline(myFile, line) )
         {
             string temp("");

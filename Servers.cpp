@@ -1,3 +1,10 @@
+/*
+Ali Burak ERDOĞAN
+21301492
+CS202 - Section 3
+Homework#3
+*/
+
 #include <string>
 #include <sstream>
 using namespace std;
@@ -15,6 +22,7 @@ Server **servers;
 
 */
 
+//used for converting integers to strings
 string to_string(int number)
 {
     stringstream sstm;
@@ -36,11 +44,11 @@ Servers::Servers(int numServers)
     this->numServers = numServers;
     this->logFile = string("");
     this->logFile += "Minimum number of computers required: " + to_string(numServers)
-                    + "Simulation with " + to_string(numServers) + " computers:\n";
+                    + "\nSimulation with " + to_string(numServers) + " computers:\n";
     this->totalWaiting = 0;
 }
 
-
+//this function updates the servers' status, this function is called each ms.
 void Servers::update()
 {
     for(int i = 0; i < numServers; i++)
@@ -54,6 +62,8 @@ void Servers::update()
     }
 }
 
+//this function controls every server, and if it finds a suitable server
+//it gives the task to the server for processing
 void Servers::process( Task* task, int currTime )
 {
     for(int i = 0; i < numServers; i++)
@@ -82,6 +92,7 @@ string Servers::getLog() { return logFile; }
 
 int Servers::getNumServers() { return numServers; }
 
+//checks if all servers are full or not
 bool Servers::allServersBusy()
 {
     bool allBusy = true;
@@ -94,4 +105,19 @@ bool Servers::allServersBusy()
         }
     }
     return allBusy;
+}
+
+//checks if all servers are empty or not
+bool Servers::allServersEmpty()
+{
+    bool allEmpty = true;
+    for(int i = 0; i < numServers; i++)
+    {
+        if( servers[i].busy )
+        {
+            allEmpty = false;
+            break;
+        }
+    }
+    return allEmpty;
 }

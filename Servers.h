@@ -1,3 +1,10 @@
+/*
+Ali Burak ERDOĞAN
+21301492
+CS202 - Section 3
+Homework#3
+*/
+
 #ifndef SERVER_H_
 #define SERVER_H_
 
@@ -29,6 +36,7 @@ public:
    string getLog();
    int getNumServers();
    bool allServersBusy();
+   bool allServersEmpty();
 
 private:
     int numServers;
